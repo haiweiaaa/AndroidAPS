@@ -157,7 +157,7 @@ class RFSpy @Inject constructor(
     }
 
     private fun writeToDataRaw(bytes: ByteArray, responseTimeoutMs: Int): ByteArray? {
-        SystemClock.sleep(1)
+        SystemClock.sleep(100)
         // FIXME drain read queue?
         var junkInBuffer = reader.poll(0)
 
@@ -183,6 +183,8 @@ class RFSpy @Inject constructor(
             return null // will be a null (invalid) response
         }
 
+        SystemClock.sleep(100)
+        
         return reader.poll(responseTimeoutMs)
     }
 
